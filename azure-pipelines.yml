@@ -13,13 +13,19 @@ variables:
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: ls
-
-- script: echo reponame $(repoName)
-- script: echo tag $(tag) 
-  displayName: 'display'
-  
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:  
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'my docker hub'
+        repository: $(repoName)
+        command: 'buildAndPush'
+        dockerfile: 'Dockerfile'
+        tags: $(tag)
