@@ -6,10 +6,18 @@
 trigger:
 - master
 
+variables:
+  mail: '$(git mail)'
+  name: '$(git name)'
+
 pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+- script: |
+          git config --global user.email "$(mail)"
+          git config --global user.name "$(name)"
+
 - script: git remote add official https://github.com/tootsuite/mastodon
   displayName: add remote source
 
