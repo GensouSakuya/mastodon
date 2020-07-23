@@ -9,7 +9,7 @@ trigger:
 variables:
   mail: '$(git mail)'
   name: '$(git name)'
-  currentBranch: '$(Build.SourceBranch)'
+  currentBranch: '$(Build.SourceBranchName)'
 
 pool:
   vmImage: 'ubuntu-latest'
