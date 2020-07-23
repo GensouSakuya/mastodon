@@ -18,6 +18,7 @@ steps:
 - script: |
           git config --global user.email "$(mail)"
           git config --global user.name "$(name)"
+          git config --global --add url."git@github.com:".insteadOf "https://github.com/"
   displayName: config
 
 - script: git checkout $(currentBranch)
