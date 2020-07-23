@@ -7,6 +7,7 @@ trigger:
 - master
 
 variables:
+  repoName: '$(DockerRepoName)'
   tag: '$(Build.BuildId)'
 
 pool:
@@ -16,9 +17,9 @@ steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
-- script: |
-    echo current path:%cd%
-  displayName: 'Run a multi-line script'
+- script: ls
 
-
+- script: echo reponame $(repoName)
+- script: echo tag $(tag) 
+  displayName: 'display'
   
