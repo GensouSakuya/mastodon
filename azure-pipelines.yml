@@ -6,6 +6,9 @@
 trigger:
 - master
 
+variables:
+  tag: '$(Build.BuildId)'
+
 pool:
   vmImage: 'ubuntu-latest'
 
@@ -14,8 +17,8 @@ steps:
   displayName: 'Run a one-line script'
 
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
+    echo current path:%cd%
   displayName: 'Run a multi-line script'
+
 
   
