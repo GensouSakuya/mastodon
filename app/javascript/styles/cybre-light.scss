@@ -19,7 +19,7 @@ $about-page-text: $primary-text-color;
 
 @import 'cybre-base';
 
-$gold-star: #dd9d08;
+$gold-star: $ui-highlight-color;
 
 /* cybre-specific additions */
 
@@ -266,6 +266,29 @@ $gold-star: #dd9d08;
 
 .status-card, .status-card.compact {
   border-color: $ui-highlight-color;
+}
+
+.search__input {
+  border: 1px solid $ui-primary-color;
+  border-radius: 10px;
+}
+
+.icon-with-badge {
+  &__badge {
+    background: $ui-base-color;
+    border: 2px solid lighten($ui-highlight-color, 30%);
+    color: $dark-text-color;
+  }
+}
+
+.relationship-tag {
+  color: $primary-text-color;
+  background-color: $ui-base-color;
+}
+
+.media-modal__nav {
+  background: rgba($ui-primary-color, 0.5);
+  color: $ui-base-color;
 }
 
 // selectivity -- needs to override .column-header > button
@@ -652,6 +675,9 @@ button.icon-button {
 
 .reply-indicator__content a {
   color: lighten($ui-highlight-color, 30%);
+  &.unhandled-link {
+    color:lighten( #ff0051, 30%);
+  }
 }
 
 .status__content
@@ -664,7 +690,12 @@ button.icon-button {
         color: darken($ui-base-color, 40%);
       }
     }
+
+    &.unhandled-link {
+      color: #ff0051;
+    }
   }
+
 }
 
 .detailed-status__display-name {
@@ -764,8 +795,8 @@ button.icon-button {
 
   .sidebar {
     .logo {
-      -webkit-filter: invert(100%);
-      filter: invert(100%);
+      -webkit-filter: hue-rotate(133deg) saturate(70%) brightness(110%);
+      filter: hue-rotate(133deg) saturate(70%) brightness(110%);
     }
 
     ul {
