@@ -16,7 +16,7 @@ pool:
 
 steps:
 - checkout: self
-  displayName: 'Checkout and persist credential'
+  displayName: 'persist credential'
   persistCredentials: true
  
 - script: |
