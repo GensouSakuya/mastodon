@@ -19,11 +19,6 @@ steps:
   displayName: 'Checkout and persist credential'
   persistCredentials: true
 
-- script: |
-          git config --global user.email "$(mail)"
-          git config --global user.name "$(name)"
-  displayName: config
-
 - script: git checkout $(currentBranch)
   displayName: checkout
 
