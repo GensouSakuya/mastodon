@@ -176,8 +176,8 @@ export default class StatusContent extends React.PureComponent {
   textModify = (content) => {
     let tc = content;
     try {
-      tc = setStrike(tc);
-      tc = setBold(tc);
+      tc = this.setStrike(tc);
+      tc = this.setBold(tc);
     }
     catch {
       //ignore
