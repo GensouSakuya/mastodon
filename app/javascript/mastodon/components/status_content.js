@@ -173,19 +173,38 @@ export default class StatusContent extends React.PureComponent {
     this.node = c;
   }
   
-  setStrike = (content) => {
+  textModify = (content) => {
     let tc = content;
     try {
-      let delContent = tc.match(/--(.)+--/g);
-      while(delContent!=null)
-      {
-        tc = tc.replace("--", "<del>");
-        tc = tc.replace("--", "</del>");
-        delContent = tc.match(/--(.)+--/g);
-      }
+      tc = setStrike(tc);
+      tc = setBold(tc);
     }
-    catch{
+    catch {
       //ignore
+    }
+    return tc;
+  }
+
+  setBold = (content) => {
+    let tc = content;
+    let matchedContent = tc.match(/\*\*(.)+\*\*/g);
+    while(matchedContent!=null)
+    {
+      tc = tc.replace("**", "<b>");
+      tc = tc.replace("**", "</b>");
+      matchedContent = tc.match(/\*\*(.)+\*\*/g);
+    }
+    return tc;
+  }
+  
+  setStrike = (content) => {
+    let tc = content;
+    let matchedContent = tc.match(/--(.)+--/g);
+    while(matchedContent!=null)
+    {
+      tc = tc.replace("--", "<del>");
+      tc = tc.replace("--", "</del>");
+      matchedContent = tc.match(/--(.)+--/g);
     }
     return tc;
   }
@@ -201,8 +220,8 @@ export default class StatusContent extends React.PureComponent {
     const renderReadMore = this.props.onClick && status.get('collapsed');
     const renderViewThread = this.props.showThread && status.get('in_reply_to_id') && status.get('in_reply_to_account_id') === status.getIn(['account', 'id']);
 
-    const content = { __html: this.setStrike(status.get('contentHtml')) };
-    const spoilerContent = { __html: this.setStrike(status.get('spoilerHtml')) };
+    const content = { __html: this.textModify(status.get('contentHtml')) };
+    const spoilerContent = { __html: this.textModify(status.get('spoilerHtml')) };
     const directionStyle = { direction: 'ltr' };
     const classNames = classnames('status__content', {
       'status__content--with-action': this.props.onClick && this.context.router,
