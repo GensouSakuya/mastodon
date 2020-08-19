@@ -45,14 +45,14 @@
 /* Don't display the elephant mascot (we have our
  * own, thanks) */
 .drawer__inner__mastodon {
-  display: none;
+  //display: none;
 }
 
 /* Let the compose area/drawer be short, but
  * expand if necessary */
 .drawer .drawer__inner {
   overflow: visible;
-  height:inherit;
+  //height:inherit;
   background-image: none;
 }
 .drawer__pager {
