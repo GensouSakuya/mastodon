@@ -1402,10 +1402,10 @@ body.admin {
   &:hover { background-image: url("../themes/win95/images/icon_local.png"); }
 }
 .column-link[href="/web/directory"] {
-  background-image: url("../themes/win95/images/icon_profile");
+  background-image: url("../themes/win95/images/icon_profile.png");
   background-repeat:no-repeat;
   background-position: 36px 50%;
-  &:hover { background-image: url("../themes/win95/images/icon_profile"); }
+  &:hover { background-image: url("../themes/win95/images/icon_profile.png"); }
 }
 .column-link[href="/web/timelines/direct"] {
   background-image: url("../themes/win95/images/icon_direct.png");
