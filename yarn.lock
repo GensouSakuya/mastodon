@@ -1139,10 +1139,10 @@
   resolved "https://registry.yarnpkg.com/@gamestdio/websocket/-/websocket-0.3.2.tgz#321ba0976ee30fd14e51dbf8faa85ce7b325f76a"
   integrity sha512-J3n5SKim+ZoLbe44hRGI/VYAwSMCeIJuBy+FfP6EZaujEpNchPRFcIsVQLWAwpU1bP2Ji63rC+rEUOd1vjUB6Q==
 
-"@github/webauthn-json@^0.4.2":
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/@github/webauthn-json/-/webauthn-json-0.4.2.tgz#573bba7f30f035d82a6b6040430eb4e9729db849"
-  integrity sha512-10RwfEzpg0y68Coj480tYE4KajRO39ii0652bWbKM0OfXlV9szw6N5vMwnNzelvAMigcEDiAtFcvFCvB8GnTtA==
+"@github/webauthn-json@^0.5.3":
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/@github/webauthn-json/-/webauthn-json-0.5.3.tgz#994ec16ae0ae15b57121bd838ffcf1292a11c822"
+  integrity sha512-D5obpZT82woedlFL5M0lpx2sqMDEh1e1NEj1rKQGkJHuZFm8m/idbzcw8RwLyJ843UBrNX5CQ/Ea1hjqlnB/KA==
 
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"
