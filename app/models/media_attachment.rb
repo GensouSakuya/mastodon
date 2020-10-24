@@ -91,6 +91,26 @@ class MediaAttachment < ApplicationRecord
       }.freeze,
     }.freeze,
   }.freeze
+  
+  GIFVIDEO_FORMAT = {
+    format: 'mp4',
+    content_type: 'video/mp4',
+    convert_options: {
+      output: {
+        'loglevel' => 'fatal',
+        'movflags' => 'faststart',
+        'pix_fmt' => 'yuv420p',
+        'vf' => 'scale=\'trunc(iw/2)*2:trunc(ih/2)*2\'',
+        'vsync' => 'cfr',
+        'c:v' => 'h264',
+        'maxrate' => '1300K',
+        'bufsize' => '1300K',
+        'frames:v' => 60 * 60 * 3,
+        'crf' => 18,
+        'map_metadata' => '-1',
+      }.freeze,
+    }.freeze,
+  }.freeze
 
   VIDEO_PASSTHROUGH_OPTIONS = {
     video_codecs: ['h264'].freeze,
@@ -142,6 +162,11 @@ class MediaAttachment < ApplicationRecord
   VIDEO_CONVERTED_STYLES = {
     small: VIDEO_STYLES[:small].freeze,
     original: VIDEO_FORMAT.freeze,
+  }.freeze
+  
+  GIF_CONVERTED_STYLES = {
+    small: VIDEO_STYLES[:small].freeze,
+    original: GIFVIDEO_FORMAT.freeze,
   }.freeze
 
   THUMBNAIL_STYLES = {
@@ -274,7 +299,9 @@ class MediaAttachment < ApplicationRecord
     private
 
     def file_styles(attachment)
-      if attachment.instance.file_content_type == 'image/gif' || VIDEO_CONVERTIBLE_MIME_TYPES.include?(attachment.instance.file_content_type)
+      if attachment.instance.file_content_type == 'image/gif'
+        GIF_CONVERTED_STYLES
+      elsif VIDEO_CONVERTIBLE_MIME_TYPES.include?(attachment.instance.file_content_type)
         VIDEO_CONVERTED_STYLES
       elsif IMAGE_MIME_TYPES.include?(attachment.instance.file_content_type)
         IMAGE_STYLES
