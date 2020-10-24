@@ -153,7 +153,7 @@ class MediaAttachment < ApplicationRecord
   IMAGE_LIMIT = 10.megabytes
   VIDEO_LIMIT = 400.megabytes
 
-  MAX_VIDEO_MATRIX_LIMIT = 2_304_000 # 1920x1200px
+  MAX_VIDEO_MATRIX_LIMIT = 3_686_400 #origin:1920x1200px now:2560x1440px
   MAX_VIDEO_FRAME_RATE   = 60
 
   belongs_to :account,          inverse_of: :media_attachments, optional: true
