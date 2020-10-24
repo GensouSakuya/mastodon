@@ -9,7 +9,7 @@ module Paperclip
 
       attachment.instance.type = MediaAttachment.types[:gifv] unless movie.audio_codec
 
-      Paperclip::Transcoder.make(file, actual_options(movie), attachment)
+      # Paperclip::Transcoder.make(file, actual_options(movie), attachment)
     end
 
     private
