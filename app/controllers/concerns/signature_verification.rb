@@ -90,7 +90,7 @@ module SignatureVerification
 
     raise SignatureVerificationError, "Public key not found for key #{signature_params['keyId']}" if account.nil?
 
-    Rails.logger.error "account id: #{account.Id}, signature #{signature}, compare_signed_string #{compare_signed_string}"
+    Rails.logger.error "account id: #{account.id}, signature #{signature}, compare_signed_string #{compare_signed_string}"
     
     return account unless verify_signature(account, signature, compare_signed_string).nil?
 
