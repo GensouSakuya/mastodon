@@ -90,6 +90,8 @@ module SignatureVerification
 
     raise SignatureVerificationError, "Public key not found for key #{signature_params['keyId']}" if account.nil?
 
+    Rails.logger.error "account id: #{account.Id}, signature #{signature}, compare_signed_string #{compare_signed_string}"
+    
     return account unless verify_signature(account, signature, compare_signed_string).nil?
 
     @signature_verification_failure_reason = "Verification failed for #{account.username}@#{account.domain} #{account.uri} using rsa-sha256 (RSASSA-PKCS1-v1_5 with SHA-256)"
