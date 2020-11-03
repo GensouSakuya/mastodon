@@ -91,11 +91,8 @@ module SignatureVerification
 
     raise SignatureVerificationError, "Public key not found for key #{signature_params['keyId']}" if account.nil?
 
-    Rails.logger.error "build_signed_string: #{build_signed_string}"
-    Rails.logger.error "account id: #{account.id}, signature #{Base64.encode64(signature)}, compare_signed_string #{Base64.encode64(compare_signed_string)}"
-    
     return account unless verify_signature(account, signature, compare_signed_string).nil?
-    
+
     envhost = ENV['LOCAL_DOMAIN']
     hostheader = "host: #{envhost.downcase}"
     newheader = "host: #{envhost}"
@@ -176,7 +173,6 @@ module SignatureVerification
 
         "(expires): #{signature_params['expires']}"
       else
-        Rails.logger.error "else signed_header: #{signed_header}, value: #{request.headers[to_header_name(signed_header)]}"
         "#{signed_header}: #{request.headers[to_header_name(signed_header)]}"
       end
     end.join("\n")
