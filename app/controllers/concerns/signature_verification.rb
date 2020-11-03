@@ -165,6 +165,12 @@ module SignatureVerification
         raise SignatureVerificationError, 'Pseudo-header (expires) used but corresponding argument missing' if signature_params['expires'].blank?
 
         "(expires): #{signature_params['expires']}"
+      elseif signed_header == 'host'
+        if request.headers['host'] == ENV['LOCAL_DOMAIN'].downcase
+          "#{signed_header}: #{ENV['LOCAL_DOMAIN']}"
+        else
+          "#{signed_header}: #{request.headers[to_header_name(signed_header)]}"
+        end
       else
         "#{signed_header}: #{request.headers[to_header_name(signed_header)]}"
       end
