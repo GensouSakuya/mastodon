@@ -95,6 +95,15 @@ module SignatureVerification
     Rails.logger.error "account id: #{account.id}, signature #{Base64.encode64(signature)}, compare_signed_string #{Base64.encode64(compare_signed_string)}"
     
     return account unless verify_signature(account, signature, compare_signed_string).nil?
+    
+    envhost = ENV['LOCAL_DOMAIN']
+    hostheader = "host: #{envhost.downcase}"
+    newheader = "host: #{envhost}"
+    if envhost != envhost.downcase and compare_signed_string.include? hostheader
+      compare_signed_string = compare_signed_string.gsub(hostheader,newheader)
+      Rails.logger.error "new compare_signed_string: #{compare_signed_string}"
+      return account unless verify_signature(account, signature, compare_signed_string).nil?
+    end
 
     @signature_verification_failure_reason = "Verification failed for #{account.username}@#{account.domain} #{account.uri} using rsa-sha256 (RSASSA-PKCS1-v1_5 with SHA-256)"
     @signed_request_account = nil
@@ -166,13 +175,6 @@ module SignatureVerification
         raise SignatureVerificationError, 'Pseudo-header (expires) used but corresponding argument missing' if signature_params['expires'].blank?
 
         "(expires): #{signature_params['expires']}"
-      elseif signed_header == 'host'
-        Rails.logger.error "elseif host signed_header: #{signed_header}, request host: #{request.headers['host']}, request.host: #{request.host}, Env: #{ENV['LOCAL_DOMAIN']}, value: #{request.headers[to_header_name(signed_header)]}"
-        if request.headers['host'] == ENV['LOCAL_DOMAIN'].downcase
-          "#{signed_header}: #{ENV['LOCAL_DOMAIN']}"
-        else
-          "#{signed_header}: #{request.headers[to_header_name(signed_header)]}"
-        end
       else
         Rails.logger.error "else signed_header: #{signed_header}, value: #{request.headers[to_header_name(signed_header)]}"
         "#{signed_header}: #{request.headers[to_header_name(signed_header)]}"
