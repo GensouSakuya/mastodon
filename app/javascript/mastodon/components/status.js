@@ -57,6 +57,7 @@ const messages = defineMessages({
   unlisted_short: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
   private_short: { id: 'privacy.private.short', defaultMessage: 'Followers-only' },
   direct_short: { id: 'privacy.direct.short', defaultMessage: 'Direct' },
+  local_only: { id: 'status.local_only', defaultMessage: 'This post is only visible by other users of your instance' },
 });
 
 export default @injectIntl
@@ -276,6 +277,7 @@ class Status extends ImmutablePureComponent {
   render () {
     let media = null;
     let statusAvatar, prepend, rebloggedByText;
+    let localOnly = '';
 
     const { intl, hidden, featured, otherAccounts, unread, showThread, scrollKey, usingPiP } = this.props;
 
@@ -323,6 +325,10 @@ class Status extends ImmutablePureComponent {
           </div>
         </HotKeys>
       );
+    }
+    
+    if(status.get('local_only')) {
+      localOnly = <span><i className='fa fa-chain-broken' title={intl.formatMessage(messages.local_only)} /></span>;
     }
 
     if (featured) {
@@ -462,6 +468,7 @@ class Status extends ImmutablePureComponent {
             <div className='status__info'>
               <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener noreferrer'>
                 <span className='status__visibility-icon'><Icon id={visibilityIcon.icon} title={visibilityIcon.text} /></span>
+                {localOnly}
                 <RelativeTimestamp timestamp={status.get('created_at')} />
               </a>
 
