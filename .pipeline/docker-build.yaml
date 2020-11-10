@@ -14,6 +14,27 @@ pool:
   vmImage: 'ubuntu-latest'
 
 stages:
+- stage: Prepare
+  displayName: Before build
+  jobs:
+  - job: Notice
+    displayName: Notice all user
+    steps:
+    - task: DownloadPackage@1
+      inputs:
+        packageType: 'nuget'
+        feed: '/6c5e69e7-3100-48eb-b10a-d45cffc06f94'
+        view: '055fda59-810e-44b8-82e8-c953a51fb291'
+        definition: '26e68677-fbde-4a2f-8e24-5e586500ae2c'
+        version: 'latest'
+        downloadPath: '$(System.ArtifactsDirectory)/updatebot'
+        extract: true
+
+    - script: |
+            cd $(System.ArtifactsDirectory)/updatebot/bot
+            dotnet UpdateNoticeBot.dll "最后一次测试\ntest2"
+      displayName: run
+
 - stage: Build
   displayName: Build image
   jobs:  
