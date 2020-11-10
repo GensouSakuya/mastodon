@@ -32,7 +32,7 @@ stages:
 
     - script: |
             cd $(System.ArtifactsDirectory)/updatebot/bot
-            dotnet UpdateNoticeBot.dll "最后一次测试\ntest2"
+            dotnet UpdateNoticeBot.dll "检测到更新，正在准备更新工作\n如无意外本站将在大约20分钟后开始更新，届时会有短时间（约1分钟）的无法访问，敬请谅解\n如果持续无法访问或出现错误，请QQ联系站长"
       displayName: run
 
 - stage: Build
