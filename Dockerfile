@@ -63,7 +63,7 @@ RUN apt update && \
 ENV PATH="${PATH}:/opt/ruby/bin:/opt/node/bin"
 
 RUN npm install -g yarn && \
-	gem install bundler && \
+	gem install bundler -v 2.1.4 && \
 	apt update && \
 	apt -y install git libicu-dev libidn11-dev \
 	libpq-dev libprotobuf-dev protobuf-compiler
@@ -104,7 +104,7 @@ RUN apt -y --no-install-recommends install \
 	  file ca-certificates tzdata libreadline8 && \
 	apt -y install gcc && \
 	ln -s /opt/mastodon /mastodon && \
-	gem install bundler && \
+	gem install bundler -v 2.1.4 && \
 	rm -rf /var/cache && \
 	rm -rf /var/lib/apt/lists/*
 
