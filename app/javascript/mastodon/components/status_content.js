@@ -220,7 +220,7 @@ export default class StatusContent extends React.PureComponent {
     const renderViewThread = this.props.showThread && status.get('in_reply_to_id') && status.get('in_reply_to_account_id') === status.getIn(['account', 'id']);
 
     const content = { __html: this.textModify(status.get('contentHtml')) };
-    const spoilerContent = { __html: this.textModify(status.get('spoilerHtml')) };-
+    const spoilerContent = { __html: this.textModify(status.get('spoilerHtml')) };
     const classNames = classnames('status__content', {
       'status__content--with-action': this.props.onClick && this.context.router,
       'status__content--with-spoiler': status.get('spoiler_text').length > 0,
