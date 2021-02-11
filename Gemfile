@@ -17,7 +17,7 @@ gem 'makara', '~> 0.5'
 gem 'pghero', '~> 2.7'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.87', require: false
+gem 'aws-sdk-s3', '~> 1.88', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -161,3 +161,5 @@ gem 'connection_pool', require: false
 
 gem 'xorcist', '~> 1.1'
 gem 'pluck_each', '~> 0.1.3'
+
+gem 'secure_headers', '~> 3.5'
