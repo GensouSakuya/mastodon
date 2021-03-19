@@ -469,7 +469,7 @@ class User < ApplicationRecord
   end
 
   def validate_email_dns?
-    email_changed? && !(Rails.env.test? || Rails.env.development?)
+    email_changed? && !external? && !(Rails.env.test? || Rails.env.development?)
   end
 
   def invite_text_required?
