@@ -163,6 +163,10 @@ class Status < ApplicationRecord
     attributes['local'] || uri.nil?
   end
 
+  def in_reply_to_local_account?
+    reply? && thread&.account&.local?
+  end
+
   def local_only?
     local_only
   end
